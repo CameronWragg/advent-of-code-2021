@@ -18,7 +18,7 @@ class Input:
             return list(map(lambda l: int(l.rstrip("\n")), _list))
 
     @staticmethod
-    def readto_deque(file: str, to_int: bool = False) -> Union[List[str], List[int]]:
+    def readto_deque(file: str, to_int: bool = False) -> Union[deque[str], deque[int]]:
         _list = Input.readto_string(file).split("\n")
         if not to_int:
             return deque(_list)
