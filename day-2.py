@@ -10,4 +10,4 @@ def part2() -> None:
 
 
 if __name__ == "__main__":
-    Input.readfrom_url()
+    Input.readfrom_url(2)
