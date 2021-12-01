@@ -1,10 +1,23 @@
+from dotenv import load_dotenv
 from typing import List, Union
 from numpy import array_split, ndarray
 from collections import deque
+from urllib.request import Request, urlopen
+from os import getenv
 import re
+
+load_dotenv()
 
 
 class Input:
+    @staticmethod
+    def readfrom_url(day: int, session_id: str = getenv("SESSION_ID")) -> None:
+        _req = Request(f"https://adventofcode.com/2021/day/{str(day)}/input")
+        _req.add_header("Cookie", f"session={session_id}")
+        _res = urlopen(_req, timeout=900)
+        with open(f"./data/d{day}", "w") as _file:
+            print(_res.read().decode("utf-8"), end="", file=_file)
+
     @staticmethod
     def readto_string(file: str) -> str:
         return open(file).read().rstrip("\n")
