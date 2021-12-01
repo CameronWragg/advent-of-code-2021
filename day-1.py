@@ -1,10 +1,10 @@
-from typing import Literal, Tuple
+from typing import Literal, Tuple, Union
 from packages.aoc_helper import Input
 from functools import reduce
 from operator import add
 
 
-def part1(file: str, input_list: list = None) -> int:
+def part1(file: Union[str, None], input_list: Union[list, None] = None) -> int:
     _input = Input.readto_list(file, to_int=True) if not input_list else input_list
     _answer = reduce(add, map(lambda i: i[1] > i[0], zip(_input, _input[1:])))
     return _answer
