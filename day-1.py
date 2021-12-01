@@ -1,4 +1,4 @@
-from typing import Literal, Tuple, Union
+from typing import Union
 from packages.aoc_helper import Input
 from functools import reduce
 from operator import add
