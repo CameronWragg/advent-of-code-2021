@@ -1,39 +1,26 @@
 from packages.aoc_helper import Input
 from typing import List, Union
+from operator import methodcaller as mc
 
 
-def part1(_commands: List[List[Union[str, int]]]) -> int:
-    _h_d = [0, 0]
-
-    for command in _commands:
+def part1(commands: List[List[Union[str, int]]], part2: bool = False) -> int:
+    h, d, a = 0, 0, 0
+    for command in commands:
+        _dist = int(command[1])
         match command[0]:
             case "forward":
-                _h_d[0] += command[1]
+                h += _dist
+                d += (a * _dist) if part2 is True else 0
             case "down":
-                _h_d[1] += command[1]
+                d += _dist if part2 is False else 0
+                a += _dist if part2 is True else 0
             case "up":
-                _h_d[1] -= command[1]
-
-    return _h_d[0] * _h_d[1]
-
-
-def part2(_commands: List[List[Union[str, int]]]) -> int:
-    _h_d_a = [0, 0, 0]
-
-    for command in _commands:
-        match command[0]:
-            case "forward":
-                _h_d_a[0] += int(command[1])
-                _h_d_a[1] += (_h_d_a[2] * int(command[1]))
-            case "down":
-                _h_d_a[2] += int(command[1])
-            case "up":
-                _h_d_a[2] -= int(command[1])
-
-    return _h_d_a[0] * _h_d_a[1]
+                d -= _dist if part2 is False else 0
+                a -= _dist if part2 is True else 0
+    return h * d
 
 
 if __name__ == "__main__":
-    _input = [l.split(" ") for l in Input.readto_list("./data/d2")]
+    _input = list(map(mc("split", " "), Input.readto_list("./data/d2")))
     print(f"Part 1: {part1(_input)}")
-    print(f"Part 2: {part2(_input)}")
+    print(f"Part 2: {part1(_input, part2=True)}")
