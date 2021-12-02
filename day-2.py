@@ -1,9 +1,9 @@
 from packages.aoc_helper import Input
-from typing import List, Union
+from typing import List
 from operator import methodcaller as mc
 
 
-def part1(commands: List[List[Union[str, int]]], part2: bool = False) -> int:
+def part1(commands: List[List[str]], part2: bool = False) -> int:
     h, d, a = 0, 0, 0
     for command in commands:
         _dist = int(command[1])
