@@ -10,6 +10,6 @@ def part2() -> None:
 
 
 if __name__ == "__main__":
-    Input.readfrom_url()
+    Input.readfrom_url() # RUN ONCE AND DELETE
     print(f"Part 1: {part1()}")
     print(f"Part 2: {part2()}")
