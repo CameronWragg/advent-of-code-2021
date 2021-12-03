@@ -31,6 +31,17 @@ class Input:
             return list(map(lambda l: int(l.rstrip("\n")), _list))
 
     @staticmethod
+    def readto_columns(file: str) -> List[List[int]]:
+        _list = Input.readto_list(file)
+        _columns = [[] for _ in range(len(_list[0]))]
+        for l in _list:
+            _col = 0
+            for n in l:
+                _columns[_col].append(int(n))
+                _col += 1
+        return _columns
+
+    @staticmethod
     def readto_deque(file: str, to_int: bool = False) -> Union[deque[str], deque[int]]:
         _list = Input.readto_string(file).split("\n")
         if not to_int:
