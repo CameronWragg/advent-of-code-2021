@@ -23,8 +23,8 @@ class Input:
         return open(file).read().rstrip("\n")
 
     @staticmethod
-    def readto_list(file: str, to_int: bool = False) -> Union[List[str], List[int]]:
-        _list = Input.readto_string(file).split("\n")
+    def readto_list(file: str, to_int: bool = False, separator: str = "\n") -> Union[List[str], List[int]]:
+        _list = Input.readto_string(file).split(separator)
         if not to_int:
             return _list
         else:
